@@ -83,7 +83,9 @@ class ProcessListWidget(QFrame): #Classe para fazer a lista de processos
         super().__init__()
         self.setStyleSheet("background-color:white")
         layout = QVBoxLayout(self)
-        layout.addWidget(QLabel("Process List"))
+
+        self.process_count_label = QLabel("Process List count:")
+        layout.addWidget(self.process_count_label)
 
         self.table = QTableWidget()
         self.table.setColumnCount(2)
@@ -98,7 +100,11 @@ class ProcessListWidget(QFrame): #Classe para fazer a lista de processos
 
           #Essa parte é para ele fazer a tabela e a preencher os dados do txt 
         with open("information_of_all_processes.txt","r") as file:
-            lines = file.readlines()
+            lines = file.readlines()[1:]
+
+            num_processes = len(lines)
+
+            self.process_count_label.setText(f"process List Count: {num_processes}")
             for line in lines:
                 process_info = line.strip().split("  ", 1 )
                 if len(process_info) == 2 :
@@ -107,6 +113,7 @@ class ProcessListWidget(QFrame): #Classe para fazer a lista de processos
                     self.table.insertRow(row_position)
                     self.table.setItem(row_position, 0, QTableWidgetItem(process_name))
                     self.table.setItem(row_position, 1, QTableWidgetItem(user_name))
+
 
         self.table.resizeColumnsToContents()
 
@@ -139,30 +146,50 @@ class ViewofDashboard(QWidget):
         self.setGeometry(100,100,800,600)
         
         main_layout=QVBoxLayout(self)
-        self.setStyleSheet("background-color: gray")
+        self.setStyleSheet("background-color: #D22525")
 
-        self.scroll_area = QScrollArea()
-        self.scroll_widget= QWidget()
-        self.scroll_layout = QVBoxLayout(self.scroll_widget)
-        self.scroll_widget.setLayout(self.scroll_layout)
-        self.scroll_area.setWidget(self.scroll_widget)
-        self.scroll_area.setWidgetResizable(True)
-        main_layout.addWidget(self.scroll_area)
+        self.tab_widget = QTabWidget()
+        main_layout.addWidget(self.tab_widget)
 
-        self.process_widget = ProcessListWidget()
-        self.cpu_widget = CPUUsageWidget()
-        self.memory_widget = MemoryUsageWidget()
+        self.general_tab_layout = QVBoxLayout()
+        self.directory_tab_layout = QVBoxLayout()
 
-        self.grid_layout = QGridLayout()
-        self.grid_layout.addWidget(self.process_widget, 0, 0, 1, 2)
-        self.grid_layout.addWidget(self.cpu_widget, 1, 0 , )
-        self.grid_layout.addWidget(self.memory_widget, 1 , 1, alignment= Qt.AlignmentFlag.AlignRight)
-        self.scroll_layout.addLayout(self.grid_layout)
-        main_layout.setSpacing(10)
+        self.tab_widget.addTab(QWidget(), "Geral")
+        self.tab_widget.addTab(QWidget(),"Diretório")
+
+        self.setup_general_tab()
+        self.setup_directory_tab()
 
         self.controller = Controller(self)
-        self.controller.save_global_information_to_file("Global_Information.txt")
+        self.controller.save_global_information_to_file("Global_information.txt")
 
+    def setup_general_tab(self):
+
+            layout = QVBoxLayout()
+
+            self.scroll_area = QScrollArea()
+            self.scroll_widget= QWidget()
+            self.scroll_layout = QVBoxLayout(self.scroll_widget)
+            self.scroll_widget.setLayout(self.scroll_layout)
+            self.scroll_area.setWidget(self.scroll_widget)
+            self.scroll_area.setWidgetResizable(True)
+            layout.addWidget(self.scroll_area)
+
+            self.process_widget = ProcessListWidget()
+            self.cpu_widget = CPUUsageWidget()
+            self.memory_widget = MemoryUsageWidget()
+
+            self.grid_layout = QGridLayout()
+            self.grid_layout.addWidget(self.process_widget, 0, 0, 1, 2)
+            self.grid_layout.addWidget(self.cpu_widget, 1, 0 , )
+            self.grid_layout.addWidget(self.memory_widget, 1 , 1, alignment= Qt.AlignmentFlag.AlignRight)
+            self.scroll_layout.addLayout(self.grid_layout)
+
+            self.tab_widget.widget(0).setLayout(layout)
+            
+    def setup_directory_tab(self):
+            directory_content_label = QLabel("Conteúdo do Diretório")
+            self.directory_tab_layout.addWidget(directory_content_label)
 
 #classe que faz o controle para obter informações
 class Controller:

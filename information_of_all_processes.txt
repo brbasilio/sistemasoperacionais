@@ -34,7 +34,6 @@ inet_frag_wq                  root
 kauditd                       root                          
 khungtaskd                    root                          
 oom_reaper                    root                          
-kworker                       root                          
 writeback                     root                          
 kcompactd0                    root                          
 ksmd                          root                          
@@ -59,11 +58,11 @@ irq                           root
 acpi_thermal_pm               root                          
 hwrng                         root                          
 mld                           root                          
-kworker                       root                          
 ipv6_addrconf                 root                          
 kstrp                         root                          
 kworker                       root                          
 charger_manager               root                          
+kworker                       root                          
 kworker                       root                          
 kworker                       root                          
 scsi_eh_0                     root                          
@@ -71,35 +70,33 @@ scsi_tmf_0                    root
 scsi_eh_1                     root                          
 scsi_tmf_1                    root                          
 irq                           root                          
-kworker                       root                          
 jbd2                          root                          
 ext4-rsv-conver               root                          
 systemd-journal               root                          
 systemd-udevd                 root                          
-irq                           root                          
-cryptd                        root                          
+kworker                       root                          
 cfg80211                      root                          
-kmemstick                     root                          
-nv_queue                      root                          
-nv_queue                      root                          
+cryptd                        root                          
 ttm                           root                          
+kmemstick                     root                          
 card0-crtc0                   root                          
 card0-crtc1                   root                          
 card0-crtc2                   root                          
+nv_queue                      root                          
+nv_queue                      root                          
 nvidia-modeset                root                          
 nvidia-modeset                root                          
 UVM global queue              root                          
 UVM deferred release queue    root                          
 UVM Tools Event Queue         root                          
-systemd-oomd                  systemd-oom                   
 systemd-resolve               systemd-resolve               
 accounts-daemon               root                          
 acpid                         root                          
 avahi-daemon                  avahi                         
+bluetoothd                    root                          
 cron                          root                          
 dbus-daemon                   messagebus                    
 NetworkManager                root                          
-kworker                       root                          
 irqbalance                    root                          
 networkd-dispat               root                          
 polkitd                       root                          
@@ -111,27 +108,18 @@ systemd-logind                root
 thermald                      root                          
 udisksd                       root                          
 wpa_supplicant                root                          
-bluetoothd                    root                          
-nvidia-persiste               nvidia-persistenced           
 avahi-daemon                  avahi                         
+nvidia-persiste               nvidia-persistenced           
 ModemManager                  root                          
 cupsd                         root                          
 unattended-upgr               root                          
 gdm3                          root                          
-postgres                      postgres                      
-postgres                      postgres                      
-postgres                      postgres                      
-postgres                      postgres                      
-postgres                      postgres                      
-postgres                      postgres                      
-postgres                      postgres                      
 cups-browsed                  root                          
 kerneloops                    kernoops                      
 kerneloops                    kernoops                      
-mysqld                        mysql                         
 rtkit-daemon                  rtkit                         
+mysqld                        mysql                         
 irq                           root                          
-nvidia                        root                          
 nv_queue                      root                          
 upowerd                       root                          
 packagekitd                   root                          
@@ -145,8 +133,8 @@ pulseaudio                    basilio
 dbus-daemon                   basilio                       
 xdg-document-po               basilio                       
 xdg-permission-               basilio                       
-gnome-keyring-d               basilio                       
 fusermount3                   basilio                       
+gnome-keyring-d               basilio                       
 gdm-x-session                 basilio                       
 Xorg                          basilio                       
 krfcommd                      root                          
@@ -158,28 +146,29 @@ gvfsd                         basilio
 gvfsd-fuse                    basilio                       
 gnome-session-b               basilio                       
 gnome-shell                   basilio                       
+snapd-desktop-i               basilio                       
 gnome-shell-cal               basilio                       
+snapd-desktop-i               basilio                       
 dconf-service                 basilio                       
 evolution-sourc               basilio                       
 gvfs-udisks2-vo               basilio                       
-snapd-desktop-i               basilio                       
 gvfs-goa-volume               basilio                       
 goa-daemon                    basilio                       
-snapd-desktop-i               basilio                       
 evolution-calen               basilio                       
 goa-identity-se               basilio                       
 gvfs-afc-volume               basilio                       
 gvfs-gphoto2-vo               basilio                       
 gvfs-mtp-volume               basilio                       
 evolution-addre               basilio                       
+nautilus                      basilio                       
 gvfsd-trash                   basilio                       
 gjs                           basilio                       
 at-spi2-registr               basilio                       
 sh                            basilio                       
 gsd-a11y-settin               basilio                       
+ibus-daemon                   basilio                       
 gsd-color                     basilio                       
 gsd-datetime                  basilio                       
-ibus-daemon                   basilio                       
 gsd-housekeepin               basilio                       
 gsd-keyboard                  basilio                       
 gsd-media-keys                basilio                       
@@ -191,42 +180,28 @@ gsd-sharing                   basilio
 gsd-smartcard                 basilio                       
 gsd-sound                     basilio                       
 gsd-wacom                     basilio                       
-gsd-xsettings                 basilio                       
 gsd-disk-utilit               basilio                       
+gsd-xsettings                 basilio                       
 evolution-alarm               basilio                       
 ibus-dconf                    basilio                       
 ibus-extension-               basilio                       
-gsd-printer                   basilio                       
-gjs                           basilio                       
 ibus-x11                      basilio                       
 ibus-portal                   basilio                       
+gsd-printer                   basilio                       
+gjs                           basilio                       
 ibus-engine-sim               basilio                       
 tracker-miner-f               basilio                       
 xdg-desktop-por               basilio                       
 snap-store                    basilio                       
 xdg-desktop-por               basilio                       
-gjs                           basilio                       
 xdg-desktop-por               basilio                       
 gvfsd-metadata                basilio                       
-fwupd                         root                          
-firefox                       basilio                       
-Socket Process                basilio                       
-Privileged Cont               basilio                       
-snap                          basilio                       
-WebExtensions                 basilio                       
-Utility Process               basilio                       
-Isolated Web Co               basilio                       
-Isolated Web Co               basilio                       
-Web Content                   basilio                       
-Web Content                   basilio                       
+code                          basilio                       
 update-notifier               basilio                       
-update-manager                basilio                       
-Web Content                   basilio                       
-uuidd                         uuidd                         
 code                          basilio                       
 code                          basilio                       
 code                          basilio                       
-code                          basilio                       
+gedit                         basilio                       
 chrome_crashpad               basilio                       
 code                          basilio                       
 code                          basilio                       
@@ -237,33 +212,51 @@ code                          basilio
 code                          basilio                       
 bash                          basilio                       
 bash                          basilio                       
+bash                          basilio                       
+bash                          basilio                       
+update-manager                basilio                       
+bash                          basilio                       
 cpptools                      basilio                       
 code                          basilio                       
 code                          basilio                       
-bash                          basilio                       
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-thunderbird                   basilio                       
+firefox                       basilio                       
+Socket Process                basilio                       
+Privileged Cont               basilio                       
+snap                          basilio                       
+WebExtensions                 basilio                       
+Utility Process               basilio                       
 Isolated Web Co               basilio                       
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-nautilus                      basilio                       
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
-kworker                       root                          
+Web Content                   basilio                       
+Isolated Web Co               basilio                       
+Isolated Web Co               basilio                       
+RDD Process                   basilio                       
 gvfsd-network                 basilio                       
 gvfsd-dnssd                   basilio                       
+kworker                       root                          
+systemd-oomd                  systemd-oom                   
+irq                           root                          
+nvidia                        root                          
+kworker                       root                          
+postgres                      postgres                      
+postgres                      postgres                      
+postgres                      postgres                      
+postgres                      postgres                      
+postgres                      postgres                      
+postgres                      postgres                      
+postgres                      postgres                      
+kworker                       root                          
+kworker                       root                          
+kworker                       root                          
+kworker                       root                          
+Web Content                   basilio                       
+Web Content                   basilio                       
+Web Content                   basilio                       
+kworker                       root                          
+gjs                           basilio                       
+kworker                       root                          
+kworker                       root                          
+kworker                       root                          
+kworker                       root                          
+kworker                       root                          
 kworker                       root                          
 python3                       basilio                       
