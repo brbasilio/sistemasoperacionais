@@ -1,8 +1,8 @@
 Global Memory Information  
 
-Total Memory: 7986380.0 kB 
-Free Memory: 450604.0 kB 
-Used Memory: 7535776.0 kB 
-Memory free percent: 5.6421557701987695% 
-Memory used percent: 94.35784422980123% 
+Total Memory: 7986384.0 kB 
+Free Memory: 1038832.0 kB 
+Used Memory: 6947552.0 kB 
+Memory free percent: 13.007538831090514% 
+Memory used percent: 86.99246116890949% 
 Total Virtual Memory: 0.0 kB 

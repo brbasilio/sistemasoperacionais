@@ -1,0 +1,154 @@
+Partition: /dev/sda6
+Mountpoint: /
+Total Size: 49608.04296875 MB
+Used: 28081.76953125 MB
+Free: 21526.2734375 MB
+Percent Used: 56.61% 
+
+Partition: /dev/loop1
+Mountpoint: /snap/core20/2264
+Total Size: 64.0 MB
+Used: 64.0 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop2
+Mountpoint: /snap/curl/1754
+Total Size: 6.5 MB
+Used: 6.5 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop3
+Mountpoint: /snap/bare/5
+Total Size: 0.125 MB
+Used: 0.125 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop11
+Mountpoint: /snap/snapd/21465
+Total Size: 38.75 MB
+Used: 38.75 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop8
+Mountpoint: /snap/netbeans/93
+Total Size: 489.5 MB
+Used: 489.5 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop9
+Mountpoint: /snap/snap-store/1113
+Total Size: 13.0 MB
+Used: 13.0 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop12
+Mountpoint: /snap/snapd/21759
+Total Size: 38.875 MB
+Used: 38.875 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop6
+Mountpoint: /snap/gnome-42-2204/172
+Total Size: 504.25 MB
+Used: 504.25 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop5
+Mountpoint: /snap/firefox/3836
+Total Size: 266.75 MB
+Used: 266.75 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop0
+Mountpoint: /snap/core22/1122
+Total Size: 74.25 MB
+Used: 74.25 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop10
+Mountpoint: /snap/snap-store/959
+Total Size: 12.375 MB
+Used: 12.375 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop7
+Mountpoint: /snap/gtk-common-themes/1535
+Total Size: 91.75 MB
+Used: 91.75 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop13
+Mountpoint: /snap/mysql-workbench-community/13
+Total Size: 165.125 MB
+Used: 165.125 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop4
+Mountpoint: /snap/core22/1380
+Total Size: 74.25 MB
+Used: 74.25 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop15
+Mountpoint: /snap/netbeans/102
+Total Size: 493.5 MB
+Used: 493.5 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop14
+Mountpoint: /snap/core20/2318
+Total Size: 64.0 MB
+Used: 64.0 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop16
+Mountpoint: /snap/gnome-42-2204/176
+Total Size: 505.125 MB
+Used: 505.125 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop18
+Mountpoint: /snap/snapd-desktop-integration/83
+Total Size: 0.5 MB
+Used: 0.5 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/loop17
+Mountpoint: /snap/snapd-desktop-integration/157
+Total Size: 0.5 MB
+Used: 0.5 MB
+Free: 0.0 MB
+Percent Used: 100.00% 
+
+Partition: /dev/sda6
+Mountpoint: /var/snap/firefox/common/host-hunspell
+Total Size: 49608.04296875 MB
+Used: 28081.76953125 MB
+Free: 21526.2734375 MB
+Percent Used: 56.61% 
+
+Partition: /dev/sda1
+Mountpoint: /boot/efi
+Total Size: 96.0 MB
+Used: 49.6533203125 MB
+Free: 46.3466796875 MB
+Percent Used: 51.72% 
+

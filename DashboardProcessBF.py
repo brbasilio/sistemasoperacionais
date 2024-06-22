@@ -1,10 +1,11 @@
 import os  #biblioteca para 
 import time #biblioteca para timer e usada para atualização
 import threading #biblioteca para threads
-from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QScrollArea, QGridLayout, QTableWidget, QTableWidgetItem , QFrame, QTabWidget, QMessageBox #biblioteca grafica do PhytonQt6
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QScrollArea, QGridLayout, QTableWidget, QTableWidgetItem , QFrame, QTabWidget, QMessageBox, QTextEdit, QSizePolicy #biblioteca grafica do PhytonQt6
 from PyQt6.QtCore import QTimer, Qt #biblioteca grafica do PyQt6
 
 #classe que representa o modelo no MVC
+
 class ProcessInformation:  #Dados para guardar os dados necessarios do processo
     def __init__(self,pid,user,name) :
         self.pid = pid
@@ -136,7 +137,30 @@ class ProcessListWidget(QFrame): #Classe para fazer a lista de processos
     def show_process_details(self, row, column):
         process_name = self.table.item(row,0).text()
 
-                                
+ #classe para representar o quadrado aonde vai as informações do sistema
+class FileSystemInfoWidget(QFrame):
+    def __init__(self):
+        super().__init__()
+        self.setStyleSheet("background-color:white")
+        self.setup_ui()
+        self.load_filesystem_info()
+
+    def setup_ui(self):
+        layout = QVBoxLayout(self)
+
+        self.filesystem_textedit = QTextEdit()
+        self.filesystem_textedit.setReadOnly(True)
+        self.filesystem_textedit.setMinimumHeight(200)
+        self.filesystem_textedit.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        layout.addWidget(self.filesystem_textedit)
+
+    def load_filesystem_info(self):
+        try:
+            with open("filesystem_information.txt", "r") as file:
+                filesystem_info = file.read()
+                self.filesystem_textedit.setPlainText(filesystem_info)
+        except FileNotFoundError:
+            QMessageBox.warning(self, "File not Found", "File 'filesystem_information.txt' not found.")                               
 #classe que representa a parte de visualização usando o PyQt6
 
 class ViewofDashboard(QWidget):
@@ -144,9 +168,9 @@ class ViewofDashboard(QWidget):
         super().__init__()
         self.setWindowTitle('Dashboard of Processes')
         self.setGeometry(100,100,800,600)
+        self.setStyleSheet("background-color: #D22525")
         
         main_layout=QVBoxLayout(self)
-        self.setStyleSheet("background-color: #D22525")
 
         self.tab_widget = QTabWidget()
         main_layout.addWidget(self.tab_widget)
@@ -155,7 +179,8 @@ class ViewofDashboard(QWidget):
         self.directory_tab_layout = QVBoxLayout()
 
         self.tab_widget.addTab(QWidget(), "Geral")
-        self.tab_widget.addTab(QWidget(),"Diretório")
+        self.directory_tab = QWidget()
+        self.tab_widget.addTab(self.directory_tab,"Diretório")
 
         self.setup_general_tab()
         self.setup_directory_tab()
@@ -188,8 +213,12 @@ class ViewofDashboard(QWidget):
             self.tab_widget.widget(0).setLayout(layout)
             
     def setup_directory_tab(self):
-            directory_content_label = QLabel("Conteúdo do Diretório")
-            self.directory_tab_layout.addWidget(directory_content_label)
+        layout = QVBoxLayout()
+
+        self.filesystem_widget = FileSystemInfoWidget()
+        layout.addWidget(self.filesystem_widget)
+
+        self.directory_tab.setLayout(layout)
 
 #classe que faz o controle para obter informações
 class Controller:
@@ -197,6 +226,8 @@ class Controller:
         self.view = view
         self.mutex = threading.Lock()  
         self.start_threads()
+
+        self.get_filesystem_information()
     
     #classe que inicia as threads de obtenção de daddos e colocação
     def start_threads(self):
@@ -205,6 +236,7 @@ class Controller:
         self.timer = QTimer()
         self.timer.timeout.connect(self.put_results)
         self.timer.start(5000)
+
 
     #classe para pegar o usuario de quem o processo pertence
     def get_user_of_processes(self,proc_pid) :
@@ -327,8 +359,33 @@ class Controller:
             file.write(f"Memory used percent: {memoryused_percent}% \n")
             file.write(f"Total Virtual Memory: {virtual_memory} kB \n")
 
+    #Obter e criar informações de sistema de arquivos e guardar no txt
+    def get_filesystem_information(self):
+        filesytem_info_path = "filesystem_information.txt"
+        with open(filesytem_info_path, "w") as file:
+            with open('/proc/mounts', 'r') as f_mounts:
+                for line in f_mounts:
+                    fields = line.split()
+                    if fields[0].startswith('/dev'):
+                        device = fields[0]
+                        mountpoint = fields[1]
+
+                        statvfs = os.statvfs(mountpoint)
+                        total_space = statvfs.f_frsize * statvfs.f_blocks
+                        free_space = statvfs.f_frsize * statvfs.f_bfree
+                        used_space = total_space - free_space
+                        percent_used = (used_space / total_space) * 100
+
+                        file.write(f"Partition: {device}\n")
+                        file.write(f"Mountpoint: {mountpoint}\n")
+                        file.write(f"Total Size: {total_space / (1024 * 1024)} MB\n")
+                        file.write(f"Used: {used_space / (1024 * 1024)} MB\n")
+                        file.write(f"Free: {free_space / (1024 * 1024)} MB\n")
+                        file.write(f"Percent Used: {percent_used:.2f}% \n\n")
+
 def main():
     app = QApplication([])
+    controller = Controller
     view = ViewofDashboard()
     controller = Controller(view)
     controller.start_threads()
@@ -337,5 +394,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-
-        
